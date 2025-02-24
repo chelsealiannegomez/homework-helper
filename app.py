@@ -78,7 +78,8 @@ def get_hints_from_gemini_math(question):
     "answer" should only have the answer formatted in Latex.
     Feel free to add as many hints as you feel is needed. 
     Please make the hints build on each other with values so that you help the user get closer to the answer each time.
-    
+    If it is not a valid question, do not return a json. Return the string "not a valid question."
+
     Question: {question}
     """
 
