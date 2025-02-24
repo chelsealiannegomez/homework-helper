@@ -64,8 +64,8 @@ def get_hints_from_gemini(question):
 
 def get_hints_from_gemini_math(question):
     prompt = f"""
-    You are an AI homework helper. Given the question below, let us walk through the problem together. What steps should we do first? Follow all the hints given and provide a JSON response with hints and an answer WITHOUT the beginning ```json and ending ```.
-    Format the inline math parts including variables and constants in LaTeX using \\( <math> \\); use double backslashes for all single backslashes. There should be no single backslashes.
+    You are an AI homework helper. Given the question below, let us walk through the problem together. What steps should we do first? Follow all the hints given and provide a JSON response with hints and an answer.
+    Format the inline math parts following the format \\\\( <math> \\\\). Format variables and constants as well.
     Format:
     {{
       "question": "<restate the question>",
@@ -75,13 +75,14 @@ def get_hints_from_gemini_math(question):
       "answer": "\(<final answer>\)" 
     }}
 
-    "answer" should only have the answer formatted in Latex.
+    "answer" should only have the answer formatted in LaTeX.
     Feel free to add as many hints as you feel is needed. 
     Please make the hints build on each other with values so that you help the user get closer to the answer each time.
     If it is not a valid question, do not return a json. Return the string "not a valid question."
 
     Question: {question}
     """
+    print(prompt)
 
     response = chat_session.send_message(prompt)
 
